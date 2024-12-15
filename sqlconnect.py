@@ -4,23 +4,24 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 from dotenv import load_dotenv
+import toml
 import os
+config = toml.load("config.toml")
 
-load_dotenv()
-DB_HOST = os.getenv("DB_HOST")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_NAME = os.getenv("DB_NAME")
+db_host = config["database"]["host"]
+db_user = config["database"]["user"]
+db_password = config["database"]["password"]
+db_name = config["database"]["database"]
 
 
 def create_connection():
     """Establishes a connection to the MySQL database."""
     try:
         connection = mysql.connector.connect(
-            host=DB_HOST,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            database=DB_NAME
+            host=db_host,
+            user=db_user,
+            password=db_password,
+            database=db_name
         )
         if connection.is_connected():
             print("Connection to MySQL database was successful!")

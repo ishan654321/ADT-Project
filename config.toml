@@ -1,0 +1,8 @@
+[database]
+host = "localhost"
+user = "root"
+password = "IShan@123#"
+database = "adtprojectschema"
+
+[app]
+debug = true
